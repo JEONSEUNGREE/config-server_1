@@ -4,16 +4,3 @@ gateway:
 token:
   expiration_time: 864000000
   secret: token_secret_key_dev
-
-management:
-  endpoint:
-    web:
-      exposure:
-        include: health, busrefresh
-        
-spring:
-  rabbitmq:
-    host: 127.0.0.1
-    port: 1001
-    username: admin
-    password: admin
