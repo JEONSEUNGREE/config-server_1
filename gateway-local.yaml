@@ -15,7 +15,7 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user-service/**
-            - Method=GET
+            - Method=GET,POST
           filters:
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
 
@@ -23,9 +23,19 @@ spring:
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order-service/**
-            - Method=GET
+            - Method=GET,POST
           filters:
             - RewritePath=/order-service/(?<segment>.*), /$\{segment}
+        
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/product-service/**
+            - Method=GET,POST
+          filters:
+            - RewritePath=/product-service/(?<segment>.*), /$\{segment}
+
+
       discovery:
         locator:
           lower-case-service-id: true
