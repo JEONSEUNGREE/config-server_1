@@ -1,15 +1,24 @@
 spring:
   application:
     name: api-gateway
-  
+
   rabbitmq:
     host: 127.0.0.1
     port: 1001
     username: admin
     password: admin
-    
+
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+      globalcors:
+        corsConfigurations:
+          "[/**]":
+            allowedOrigins: "http://localhost:1221"
+            allow-credentials: true
+            allowedHeaders: "*"
+            allowedMethods: "*"
       routes:
         - id: user-service
           uri: lb://USER-SERVICE
@@ -26,7 +35,7 @@ spring:
             - Method=GET,POST
           filters:
             - RewritePath=/order-service/(?<segment>.*), /$\{segment}
-        
+
         - id: product-service
           uri: lb://PRODUCT-SERVICE
           predicates:
@@ -34,7 +43,6 @@ spring:
             - Method=GET,POST
           filters:
             - RewritePath=/product-service/(?<segment>.*), /$\{segment}
-
 
       discovery:
         locator:
