@@ -3,8 +3,8 @@ spring:
     name: api-gateway
 
   rabbitmq:
-    host: 127.0.0.1
-    port: 1001
+    host: rabbitmq
+    port: 5672
     username: admin
     password: admin
 
