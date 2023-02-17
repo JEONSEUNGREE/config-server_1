@@ -3,4 +3,4 @@ gateway:
 
 token:
   expiration_time: 864000000
-  secret: change_value
+  secret: secret_key
