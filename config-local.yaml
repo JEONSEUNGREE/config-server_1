@@ -3,4 +3,4 @@ gateway:
 
 token:
   expiration_time: 864000000
-  secret: secret_key
+  secret: last_chage
